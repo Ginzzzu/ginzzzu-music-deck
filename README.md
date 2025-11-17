@@ -1,3 +1,6 @@
+[![Downloads](https://img.shields.io/github/downloads/Ginzzzu/ginzzzu-music-deck/total)](https://github.com/Ginzzzu/ginzzzu-music-deck/releases)
+ ![Downloads Latest](https://img.shields.io/github/downloads/Ginzzzu/ginzzzu-music-deck/latest/total)
+
 > 🇷🇺 Русская версия ниже
 
 # 🇬🇧 Ginzzzu’s Music Deck  
