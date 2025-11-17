@@ -6,7 +6,7 @@
 # 🇬🇧 Ginzzzu’s Music Deck  
 A compact vertical music dock for Foundry VTT 13+
 
-![Music Deck Preview](https://github.com/Ginzzzu/ginzzzu-music-deck/blob/main/images/preview.jpg?raw=true)
+![Music Deck Preview](https://github.com/Ginzzzu/ginzzzu-music-deck/blob/af75485923f47a003079aa1a17da12f68995222d/images/preview.jpg)
 
 Fast access to playlists and tracks.  
 Favorites.  
