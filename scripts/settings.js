@@ -2,14 +2,15 @@
 export const MODULE_ID = "ginzzzu-music-deck";
 
 const DEFAULT_PALETTE_COLORS = [
-  "#ed2424ff",
-  "#ffb347",
-  "#2c964aff",
-  "#3191afff",
-  "#5b5bff",
-  "#b96bff",
-  "#f7f7f7",
-  "#1e1e1e"
+  "#ed2424ff", // 1 — красный
+  "#ffb347",   // 2 — оранжевый
+  "#2c964aff", // 3 — зелёный
+  "#3191afff", // 4 — бирюзовый/синий
+  "#5b5bff",   // 5 — синий
+  "#b96bff",   // 6 — фиолетовый
+  "#d4d4d4ff",   // 7 — почти белый
+  "#1e1e1e",   // 8 — тёмно-серый
+  "#000000ff"  // 9 — ЧЁРНЫЙ (новый цвет)
 ];
 
 export function registerMusicDeckSettings() {
