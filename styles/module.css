@@ -3,10 +3,12 @@
 /* Внешний контейнер: широкий, прозрачный, только для позиционирования */
 .ginzzzu-music-deck {
   position: fixed;
-  top: 10px;
-  bottom: 8%;
-
-  right: var(--ginzzzu-music-sidebar-offset, 0px);
+  top: var(--ginzzzu-music-top-offset, 10px);
+  bottom: var(--ginzzzu-music-bottom-offset, 8%);
+  right: calc(
+    var(--ginzzzu-music-sidebar-offset, 0px)
+    + var(--ginzzzu-music-right-offset, 0px)
+  );
 
   /* ширина = максимум разворота, чтобы внутри ничего не резалось */
   width: var(--gmusicdeck-max-width, 260px);
@@ -40,18 +42,24 @@
 .ginzzzu-music-deck-inner {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
+  /* НЕ растягиваем на всю высоту контейнера */
+  bottom: auto;
+
+  /* Высота по содержимому, но не больше высоты контейнера */
+  max-height: 100%;
 
   display: flex;
   flex-direction: column;
   gap: 4px;
-  align-items: flex-end; /* 👈 все потомки справа */
+  align-items: flex-end;
 
   padding: 4px;
   box-sizing: border-box;
 
+  /* скролл появится только когда контент реально выше,
+     пока плейлистов мало — блок будет маленьким */
   overflow-y: auto;
   overflow-x: visible;
 

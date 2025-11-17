@@ -296,6 +296,15 @@ class GinzzzuMusicDeck {
     // Максимальная ширина разворота
     this._container.style.setProperty("--gmusicdeck-max-width", `${maxExpandWidth}px`);
 
+    // Отступ сверху
+    this._container.style.setProperty("--ginzzzu-music-top-offset",`${this.settings.deckTopOffset ?? 10}px`);
+
+    // Отступ снизу
+    this._container.style.setProperty("--ginzzzu-music-bottom-offset",`${this.settings.deckBottomOffset ?? 8}%`);
+
+    // Отступ справа
+    this._container.style.setProperty("--ginzzzu-music-right-offset",`${this.settings.deckRightOffset ?? 0}px`);
+
     const inner = this._container.querySelector(".ginzzzu-music-deck-inner");
     if (!inner) return;
 
@@ -418,23 +427,45 @@ class GinzzzuMusicDeck {
     const favoriteIds = getFavoritePlaylists();
     const favoriteSet = new Set(favoriteIds);
 
+    const hideMarkerRaw = this.settings?.hidePlaylistMarker ?? "";
+    const hideMarker = hideMarkerRaw.trim();    
+
     const collator = new Intl.Collator(game.i18n.lang ?? "en", { sensitivity: "base" });
 
+    const sortColored = this.settings.sortColoredPlaylists;
     const playlists = allPlaylists
-      .filter((p) => p.visible)
+      .filter((p) => {
+        if (!p.visible) return false;
+
+        // Фильтрация по маркеру: если задан hideMarker и имя начинается с него — не показываем
+        if (hideMarker) {
+          const name = (p.name || "").trim();
+          if (name.startsWith(hideMarker)) return false;
+        }
+
+        return true;
+      })
       .slice()
-      .sort((a, b) => {
+            .sort((a, b) => {
         const aFav = favoriteSet.has(a.id);
         const bFav = favoriteSet.has(b.id);
 
-        // Сначала все избранные
+        // 1) избранные — всегда выше
         if (aFav && !bFav) return -1;
         if (!aFav && bFav) return 1;
 
-        // И избранные, и обычные внутри своей группы — по алфавиту
+        // 2) если включена опция — "покрашенные" выше обычных
+        if (sortColored) {
+          const aColored = !!playlistColors[a.id];
+          const bColored = !!playlistColors[b.id];
+
+          if (aColored && !bColored) return -1;
+          if (!aColored && bColored) return 1;
+        }
+
+        // 3) всё остальное — по алфавиту
         return collator.compare(a.name || "", b.name || "");
       });
-
 
       for (const playlist of playlists) {
       // Все треки плейлиста и первый играющий (если есть)
