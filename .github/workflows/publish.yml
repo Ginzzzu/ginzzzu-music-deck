@@ -1,0 +1,15 @@
+name: FoundryVTT Package Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish to FoundryVTT
+        uses: foundryvtt/foundry-publish@v1
+        with:
+          package-token: ${{ fvttp_(xG16T5on!Bw%sS0bcSaPttJ }}
+          manifest-url: https://raw.githubusercontent.com/Ginzzzu/ginzzzu-music-deck/main/module.json
