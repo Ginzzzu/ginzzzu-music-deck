@@ -1,0 +1,581 @@
+/* module.css */
+
+/* Внешний контейнер: широкий, прозрачный, только для позиционирования */
+.ginzzzu-music-deck {
+  position: fixed;
+  top: 10px;
+  bottom: 8%;
+
+  right: var(--ginzzzu-music-sidebar-offset, 0px);
+
+  /* ширина = максимум разворота, чтобы внутри ничего не резалось */
+  width: var(--gmusicdeck-max-width, 260px);
+
+  z-index: 70;
+  pointer-events: none;
+
+  overflow: visible;
+  transition: right 100ms ease-out;
+}
+
+/* Внутри этого прямоугольника сама «стеклянная колонка» справа 
+.ginzzzu-music-deck::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+
+  width: 80px; 
+
+  background-color: rgba(240, 248, 255, 0.046);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+
+  pointer-events: none;
+}*/
+
+
+/* Внутренний кликабельный блок */
+.ginzzzu-music-deck-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end; /* 👈 все потомки справа */
+
+  padding: 4px;
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: visible;
+
+  pointer-events: auto;
+}
+
+/* Поисковая строка вверху деки */
+.gmusicdeck-search {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gmusicdeck-search-input {
+  width: var(--gmusicdeck-playlist-size);
+  box-sizing: border-box;
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(10, 8, 16, 0.5);
+  color: #f5ecff;
+  font-size: 12px;
+  outline: none;
+}
+
+.gmusicdeck-search-input::placeholder {
+  color: rgba(245, 236, 255, 0.5);
+}
+
+.gmusicdeck-search-input:focus {
+  border-color: rgba(50, 120, 80, 0.5);
+  box-shadow: 0 0 6px rgba(50, 120, 80, 0.7);
+  background: rgba(10, 8, 16, 0.8);
+}
+
+/* Секция одного плейлиста */
+.gmusicdeck-playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Квадратная кнопка плейлиста */
+.gmusicdeck-playlist-header {
+  position: relative;
+  width: var(--gmusicdeck-playlist-size, 50px);
+  min-width: var(--gmusicdeck-playlist-size, 50px);
+  max-width: var(--gmusicdeck-max-width, 260px); /* 👈 тут теперь переменная */
+
+  /* прижимаем к правому краю колонки — расширение пойдёт влево */
+  margin-left: auto;
+
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* чуть больше отступ справа, чтобы не наезжать на кружок Play/Stop */
+  padding: 4px 22px 4px 6px;
+
+  background: rgba(12, 8, 16, 0.5);
+  backdrop-filter: blur(10px);
+  color: #f5ecff;
+  cursor: pointer;
+
+  transition:
+    width 120ms ease,
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    filter 120ms ease;
+}
+
+.gmusicdeck-playlist-header:hover {
+  /* убираем transform, чтобы не перебивать анимацию избранного */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+}
+
+/* В этом плейлисте что-то играет */
+.gmusicdeck-playlist-header.is-playing {
+  box-shadow: 0 0 8px rgba(170, 255, 190, 0.6);
+  backdrop-filter: blur(2px);
+  filter: brightness(1.1);
+}
+
+/* Имя плейлиста внутри */
+.gmusicdeck-playlist-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* При наведении увеличиваем ширину и показываем имя целиком */
+.gmusicdeck-playlist-header:hover {
+  width: auto; /* до размера текста, но не больше max-width */
+}
+
+.gmusicdeck-playlist-header:hover .gmusicdeck-playlist-name {
+  overflow: visible;
+  text-overflow: clip;
+}
+
+
+/* Кнопка Play/Stop плейлиста (уголок) */
+.gmusicdeck-playlist-play-toggle {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 16px;
+  height: 16px;
+
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #f5ecff;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+/* Плашка "сейчас играет" у свернутого плейлиста */
+.gmusicdeck-playlist-nowplaying {
+  position: absolute;
+  right: 100%;              /* прижать вплотную слева от квадрата */
+  top: 50%;
+  transform: translateY(-50%);
+
+  max-width: calc(
+    var(--gmusicdeck-max-width, 260px) - var(--gmusicdeck-playlist-size, 50px) - 8px
+  );
+
+  padding: 2px 6px;
+  border-radius: 3px;
+
+  background: rgba(12, 8, 16, 0.5);
+  color: #aaffbe;
+  font-size: 10px;
+  line-height: 1.2;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  pointer-events: none;      /* только отображение, не перехватываем клики */
+}
+
+.gmusicdeck-playlist-nowplaying-label {
+  white-space: inherit;
+}
+
+/* Контейнер треков */
+.gmusicdeck-playlist-sounds {
+  margin-top: 2px;
+  padding-left: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: flex-end; /* 👈 треки тоже прижаты к правому краю */
+}
+
+/* Одна строка трека */
+.gmusicdeck-sound {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  /* убираем фиксированную ширину, пусть берёт по контенту и min-width */
+  /* width: 100%; */
+  margin-left: auto; /* лишнее, теперь выравнивание идёт через align-items */
+
+  /*min-width: calc(var(--gmusicdeck-playlist-size, 50px) + 20px); для минимальной ширины плашки трека */
+  max-width: var(--gmusicdeck-max-width, 260px);
+
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: rgba(12, 8, 16, 0.75);
+  color: #f5ecff;
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition:
+    width 120ms ease,
+    background 120ms ease,
+    transform 80ms ease;
+}
+
+.gmusicdeck-sound:hover {
+  background: rgba(20, 16, 28, 0.9);
+  transform: translateY(-0.5px);
+  width: auto; /* растём, но выровнены справа → расширение влево */
+}
+
+
+/* Трек, который играет (по статусу Foundry) */
+.gmusicdeck-sound.is-playing {
+  background: rgba(50, 120, 80, 0.9);
+}
+
+/* Иконка трека слева */
+.gmusicdeck-sound-icon {
+  flex: 0 0 auto;
+  font-size: 10px;
+}
+
+/* Название трека */
+.gmusicdeck-sound-name {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+
+.gmusicdeck-sound:hover .gmusicdeck-sound-name {
+  overflow: visible;
+  text-overflow: clip;
+  color: rgba(170, 255, 190, 0.6);
+}
+
+/* Обёртка ползунка громкости трека */
+.gmusicdeck-volume-slider-wrapper {
+  position: absolute;
+  right: 105%;           /* слева от трека */
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 80px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 4px;
+  border-radius: 999px;
+
+  background: rgba(12, 8, 16, 0.7);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+
+  pointer-events: auto;
+}
+
+/* Сам ползунок громкости */
+.gmusicdeck-volume-slider {
+  width: 100%;
+  margin: 0;      /* чтобы не добавлял лишних отступов */
+}
+
+
+/* Избранный плейлист: золотистый оверлей поверх фона */
+.gmusicdeck-playlist-header.is-favorite {
+  border: 1px solid rgba(255, 215, 106, 0.6);
+  background: radial-gradient(circle at 30% 0,
+      rgba(255, 255, 255, 0.35) 0,
+      rgba(255, 225, 140, 0.5) 40%,
+      rgba(80, 55, 25, 0.6) 100%);
+color: #1b1208;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+  /*outline: 2px solid rgba(255, 215, 120, 0.35);
+  outline-offset: -2px;
+  box-shadow: 0 0 10px rgba(255, 220, 120, 0.9);*/
+}
+
+.gmusicdeck-playlist-header.is-favorite::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  mix-blend-mode: screen;
+  opacity: 0.8;
+
+  pointer-events: none;
+}
+/* Анимация: плейлист становится избранным (подлёт вверх) */
+.gmusicdeck-playlist-header.gmusicdeck-fav-anim-up {
+  animation: gmusicdeck-fav-up 220ms ease-out;
+}
+
+/* Анимация: плейлист снимается из избранного (слегка вниз) */
+.gmusicdeck-playlist-header.gmusicdeck-fav-anim-down {
+  animation: gmusicdeck-fav-down 220ms ease-in;
+}
+
+@keyframes gmusicdeck-fav-up {
+  from {
+    transform: translateY(8px) scale(0.96);
+    filter: brightness(0.9);
+  }
+  to {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes gmusicdeck-fav-down {
+  from {
+    transform: translateY(-8px) scale(1.02);
+    filter: brightness(1.1);
+  }
+  to {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Виртуальный плейлист "Избранное" */
+.gmusicdeck-playlist-header-favorites {
+  border: 1px solid rgba(255, 215, 106, 0.6);
+  background: radial-gradient(circle at 30% 0,
+      rgba(255, 255, 255, 0.35) 0,
+      rgba(255, 225, 140, 0.5) 40%,
+      rgba(80, 55, 25, 0.6) 100%);
+color: #1b1208;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+   /*box-shadow:
+    0 0 6px rgba(255, 225, 150, 0.9),
+    0 0 12px rgba(0, 0, 0, 0.6);*/
+}
+
+.gmusicdeck-playlist-header-favorites:hover {
+  filter: brightness(1.05);
+}
+
+/* Крестик очистки избранного в плейлисте "Избранное" */
+.gmusicdeck-fav-clear-toggle {
+  position: absolute;
+  right: 4px;
+  top: 7px;
+  width: 14px;
+  height: 14px;
+
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #f5ecff;
+  font-size: 10px;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 120ms ease, box-shadow 120ms ease;
+}
+
+.gmusicdeck-fav-clear-toggle:hover {
+  opacity: 1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Треки в виртуальном плейлисте "Избранное" — фон как у его плашки */
+.gmusicdeck-playlist-favorites .gmusicdeck-sound:not(.is-playing) {
+  color: #1b1208;
+  background: radial-gradient(circle at 30% 0,
+      rgba(255, 255, 255, 0.35) 0,
+      rgba(255, 225, 140, 0.5) 40%,
+      rgba(80, 55, 25, 0.6) 100%);
+}
+
+/* Иконка редактирования алиаса в плейлисте "Избранное" */
+.gmusicdeck-fav-alias-edit {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.85);
+
+  flex-shrink: 0;
+}
+
+/* Показываем ✎ только при наведении на трек в "Избранном" */
+.gmusicdeck-playlist-favorites .gmusicdeck-sound:hover .gmusicdeck-fav-alias-edit {
+  display: flex;
+}
+
+.gmusicdeck-fav-alias-edit:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Поле редактирования алиаса в "Избранном" */
+.gmusicdeck-fav-alias-input {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  padding: 1px 4px;
+  border-radius: 6px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(10, 8, 16, 0.9);
+  color: #f5ecff;
+
+  font-size: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.gmusicdeck-fav-alias-input::placeholder {
+  color: rgba(245, 236, 255, 0.4);
+}
+
+.gmusicdeck-fav-alias-input:focus {
+  border-color: rgba(120, 200, 255, 0.9);
+  box-shadow: 0 0 6px rgba(120, 200, 255, 0.7);
+}
+
+/* Избранный трек в обычном плейлисте */
+.gmusicdeck-sound.is-favorite-sound {
+  position: relative;
+  border: 1px solid rgba(255, 215, 140, 0.85);
+  box-shadow:
+    0 0 4px rgba(255, 220, 150, 0.7),
+    0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Если трек одновременно играет и он избранный — чуть ярче */
+.gmusicdeck-sound.is-favorite-sound.is-playing {
+  border-color: rgba(255, 240, 190, 0.95);
+  box-shadow:
+    0 0 6px rgba(200, 255, 200, 0.9),
+    0 0 14px rgba(0, 0, 0, 0.8);
+}
+
+/* Хедеры с полным названием (для избранных, если так настроено) */
+.gmusicdeck-playlist-header.gmusicdeck-no-truncate {
+  width: auto; /* до max-width */
+}
+
+.gmusicdeck-playlist-header.gmusicdeck-no-truncate .gmusicdeck-playlist-name {
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Палитра выбора цвета плейлиста */
+.gmusicdeck-color-picker {
+  position: fixed;
+  z-index: 9999;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  padding: 6px;
+  border-radius: 8px;
+
+  background: rgba(12, 8, 16, 0.95);
+  box-shadow:
+    0 0 6px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(0, 0, 0, 0.9);
+
+  max-width: 120px;
+  pointer-events: auto;
+}
+
+.gmusicdeck-color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  box-sizing: border-box;
+
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.gmusicdeck-color-swatch:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Квадрат "убрать цвет плейлиста" */
+.gmusicdeck-color-swatch-clear {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+}
+
+.gmusicdeck-color-swatch-clear::before {
+  content: "✕";
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.gmusicdeck-color-swatch-clear:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.gmusicdeck-color-clear {
+  flex: 0 0 100%;
+  margin-top: 2px;
+  padding-top: 4px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  opacity: 0.75;
+
+  transition: opacity 100ms ease;
+}
+
+.gmusicdeck-color-clear:hover {
+  opacity: 1;
+}

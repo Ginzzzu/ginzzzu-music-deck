@@ -1,0 +1,36 @@
+{
+  "id": "ginzzzu-music-deck",
+  "title": "Ginzzzu's Music Deck",
+  "description": "Vertical playlist dock for Foundry VTT with favorites, aliases and quick access to tracks.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Ginzzzu",
+      "email": "stepangrakov@gmail.com",
+      "url": "https://boosty.to/Ginzzzu",
+      "discord": "ginzzzu",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "scripts/core.js"
+  ],
+  "styles": [
+    "styles/module.css"
+  ],
+  "relationships": {
+    "systems": [],
+    "requires": []
+  },
+  "languages": [
+  { "lang": "en", "name": "English", "path": "lang/en.json" },
+  { "lang": "ru", "name": "Русский", "path": "lang/ru.json" }
+  ],
+  "url": "https://github.com/Ginzzzu/ginzzzu-music-deck",
+  "manifest": "https://raw.githubusercontent.com/Ginzzzu/ginzzzu-music-deck/main/module.json",
+  "download": "https://github.com/Ginzzzu/ginzzzu-music-deck/archive/refs/tags/v0.1.0.zip"
+} 

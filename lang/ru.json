@@ -1,0 +1,61 @@
+{
+  "LANGUAGE": "Русский",
+  "NATIVE": "Русский",
+  "ginzzzu-music-deck": {
+    "module": {
+      "title": "Ginzzzu's Music Deck",
+      "description": "Вертикальная музыкальная дека для Foundry VTT, быстрый доступ к плейлистам и трекам."
+    },
+    "settings": {
+      "playlistButtonSize": {
+        "name": "Ширина деки",
+        "hint": "Размер кнопки плейлистов (в свернутом виде) и поля поиска."
+      },
+      "maxExpandWidth": {
+        "name": "Максимальная ширина разворота",
+        "hint": "Максимальная ширина кнопок плейлистов и треков при наведении (в пикселях)."
+      },
+      "paletteColor1": { "name": "Цвет палитры 1" },
+      "paletteColor2": { "name": "Цвет палитры 2" },
+      "paletteColor3": { "name": "Цвет палитры 3" },
+      "paletteColor4": { "name": "Цвет палитры 4" },
+      "paletteColor5": { "name": "Цвет палитры 5" },
+      "paletteColor6": { "name": "Цвет палитры 6" },
+      "paletteColor7": { "name": "Цвет палитры 7" },
+      "paletteColor8": { "name": "Цвет палитры 8" },
+
+      "paletteColor": {
+        "baseName": "Цвет",
+        "hint": "Цвет для палитры плейлистов. Можно ввести hex-код, либо установить модуль \"Color Picker\" для выбора цветов через палитру."
+      },
+      "useFolderColor": {
+        "name": "Использовать цвет папки",
+        "hint": "Если включено, фон кнопки плейлиста берётся из цвета папки."
+      },
+      "collapseOthers": {
+        "name": "Сворачивать другие плейлисты",
+        "hint": "При разворачивании одного плейлиста остальные автоматически сворачиваются."
+      },
+      "truncateFavoritePlaylists": {
+        "name": "Обрезать названия избранных плейлистов",
+        "hint": "Если выключено, избранные плейлисты и \"Избранное\" всегда показывают название полностью (до максимальной ширины)."
+      }
+    },
+    "ui": {
+      "searchPlaceholder": "Поиск...",
+      "untitled": "(без названия)",
+      "untitledPlaylist": "(плейлист)",
+      "favoritesTitle": "Избранное",
+      "favoritesTooltip": "Избранные треки Ginzzzu's Music Deck",
+      "favoritesClearTooltip": "Очистить избранное (убрать все треки)",
+      "favoritesDialogTitle": "Очистить избранное?",
+      "favoritesDialogContent": "<p>Все треки будут убраны из плейлиста <strong>«Избранное»</strong>, но останутся в своих плейлистах.</p>",
+      "playlistPlayTitle": "Запустить плейлист (стандартный PlayAll)",
+      "playlistStopTitle": "Остановить плейлист (стандартный Stop)",
+      "colorPickerClearOne": "Убрать цвет этого плейлиста",
+      "colorPickerClearAll": "Сбросить все цвета",
+      "aliasEditWithAlias": "Переименовать трек в избранном",
+      "aliasEditNoAlias": "Задать имя для трека в избранном"
+    }
+  }
+}
