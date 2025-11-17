@@ -11,5 +11,5 @@ jobs:
       - name: Publish to FoundryVTT
         uses: foundryvtt/foundry-publish@v1
         with:
-          package-token: ${{ fvttp_(xG16T5on!Bw%sS0bcSaPttJ }}
+          package-token: ${{ secrets.FOUNDRY_TOKEN }}
           manifest-url: https://raw.githubusercontent.com/Ginzzzu/ginzzzu-music-deck/main/module.json
