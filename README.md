@@ -126,7 +126,7 @@ Module settings include:
 ### Foundry Package Management (recommended)
 Manifest URL:
 ```
-(put your manifest URL here)
+https://raw.githubusercontent.com/Ginzzzu/ginzzzu-music-deck/main/module.json
 ```
 
 ### Manual Installation
@@ -280,7 +280,7 @@ Data/modules/ginzzzu-music-deck/
 
 Manifest URL:
 ```
-(укажите ваш manifest URL здесь)
+https://raw.githubusercontent.com/Ginzzzu/ginzzzu-music-deck/main/module.json
 ```
 
 ### Вручную
