@@ -23,6 +23,7 @@
       "paletteColor6": { "name": "Palette color 6" },
       "paletteColor7": { "name": "Palette color 7" },
       "paletteColor8": { "name": "Palette color 8" },
+      "paletteColor9": { "name": "Palette color 9" },
 
       "paletteColor": {
         "baseName": "Color",

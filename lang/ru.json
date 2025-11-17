@@ -23,6 +23,7 @@
       "paletteColor6": { "name": "Цвет палитры 6" },
       "paletteColor7": { "name": "Цвет палитры 7" },
       "paletteColor8": { "name": "Цвет палитры 8" },
+      "paletteColor9": { "name": "Цвет палитры 9" },
 
       "paletteColor": {
         "baseName": "Цвет",
