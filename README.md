@@ -2,12 +2,12 @@
 
 A compact vertical music dock for Foundry VTT 13+
 
-Fast access to playlists and tracks.
-Favorites.
-Custom colors.
-Search.
-Volume slider.
-Track aliases.
+-Fast access to playlists and tracks.
+-Favorites.
+-Custom colors.
+-Search.
+-Volume slider.
+-Track aliases.
 
 A modern and clean “music deck” UI designed for fast in-game audio control.
 
@@ -15,132 +15,88 @@ A modern and clean “music deck” UI designed for fast in-game audio control.
 🎵 Vertical Music Deck
 
 A slim vertical panel on the right side of the screen:
-
-always visible during gameplay
-
-automatically shifts when the Foundry sidebar is opened
-
-behaves similarly to a portrait dock
-
-playlist buttons expand leftward on hover
+-always visible during gameplay
+-automatically shifts when the Foundry sidebar is opened
+-behaves similarly to a portrait dock
+-playlist buttons expand leftward on hover
 
 🔍 Smart Search
-
 A search field at the top of the deck filters:
-
-playlists by name
-
-tracks by name
-
-favorite track aliases
-
-Matching playlists automatically expand while search is active.
+-playlists by name
+-tracks by name
+-favorite track aliases
+-Matching playlists automatically expand while search is active.
 
 ⭐ Favorite Playlists
 
 Middle-click on any playlist:
-
-toggles it as favorite
-
-favorite playlists appear at the top of the deck
-
-automatically sorted alphabetically
-
-get a gold border and highlight
+-toggles it as favorite
+-favorite playlists appear at the top of the deck
+-automatically sorted alphabetically
+-get a gold border and highlight
 
 ❤️ Favorite Tracks (“Virtual Favorites Playlist”)
 
 Middle-click on any track:
-
-adds it to the Favorites virtual playlist
-
-favorite tracks from all playlists are collected in one place
-
-removing a favorite track updates both the virtual playlist and the original playlist highlight
-
-adding a track automatically opens the Favorites playlist
+-adds it to the Favorites virtual playlist
+-favorite tracks from all playlists are collected in one place
+-removing a favorite track updates both the virtual playlist and the original playlist highlight
+-adding a track automatically opens the Favorites playlist
 
 The “Favorites” playlist shows:
 
 ✔ only the tracks you chose
-
 ✔ golden highlight for favorited tracks
-
 ✔ per-track aliases / custom names
 
 ✏ Track Aliases / Renaming (Favorites Only)
 
 In the “Favorites” playlist:
-
-hover over a track → edit icon (✎) appears
-
-click ✎ to rename the track only inside Favorites
-
-original track name is preserved in the playlist
-
-aliases are shown in UI and used in search
-
-tooltip shows both alias and original name
+-hover over a track → edit icon (✎) appears
+-click ✎ to rename the track only inside Favorites
+-original track name is preserved in the playlist
+-aliases are shown in UI and used in search
+-tooltip shows both alias and original name
 
 This allows creating meaningful names like:
 
 “Main Theme”
-
 “City Ambience”
-
 “Romance”
-
 “Battle (light)”
 
 🔈 Per-track Volume Slider
 
 Right-click any track → a mini volume slider appears:
-
-real-time volume adjustment
-
-synchronized with Foundry’s internal playlist volume
-
-stays open while dragging
-
-closes only when clicking away
-
-smooth, compact UI
+-real-time volume adjustment
+-synchronized with Foundry’s internal playlist volume
+-stays open while dragging
+-closes only when clicking away
+-smooth, compact UI
 
 Works for:
-
-normal playlist tracks
-
-favorite tracks
+-normal playlist tracks
+-favorite tracks
 
 🎨 Playlist Color Picker
 
 Right-click on any playlist:
-
-opens a color palette popup
-
-choose a custom background color
-
-“remove color” button
-
-“reset all colors” button
+-opens a color palette popup
+-choose a custom background color
+-“remove color” button
+-“reset all colors” button
 
 Palette colors themselves can be configured in module settings.
 
 ⚙ Fully Configurable
 
 Module settings include:
-
-playlist button size
-
-maximum expand width on hover
-
-auto-collapse behavior
-
-full name display for favorites
-
-palette colors (with optional Color Picker UI)
-
-folder-color integration
+-playlist button size
+-maximum expand width on hover
+-auto-collapse behavior
+-full name display for favorites
+-palette colors (with optional Color Picker UI)
+-folder-color integration
 
 📦 Installation
 Foundry Package Management (recommended)
@@ -160,33 +116,24 @@ Enable the module in Manage Modules
 
 💡 Usage Tips
 
-Middle-click = favorite playlist or favorite track
-
-Right-click track = volume slider
-
-Right-click playlist = color menu
-
-Editing aliases helps organize background moods, themes, and emotional markers during gameplay
-
-Search is extremely fast and works across all playlists and favorites
+-Middle-click = favorite playlist or favorite track
+-Right-click track = volume slider
+-Right-click playlist = color menu
+-Editing aliases helps organize background moods, themes, and emotional markers during gameplay
+-Search is extremely fast and works across all playlists and favorites
 
 🧩 Compatibility
 
-Designed for Foundry VTT 13+
-
-Works with all playlist/audio modules
-
-Compatible with Color Picker (optional enhancement)
+-Designed for Foundry VTT 13+
+-Works with all playlist/audio modules
+-Compatible with Color Picker (optional enhancement)
 
 📘 Roadmap
 
-Optional auto-scroll to Favorites when adding a track
-
-Folder grouping mode (optional)
-
-Quick tags for tracks
-
-Integration with ambient sounds (optional)
+-Optional auto-scroll to Favorites when adding a track
+-Folder grouping mode (optional)
+-Quick tags for tracks
+-Integration with ambient sounds (optional)
 
 🇷🇺 Ginzzzu’s Music Deck
 
