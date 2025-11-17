@@ -1,3 +1,5 @@
+> 🇷🇺 Русская версия ниже
+
 # 🇬🇧 Ginzzzu’s Music Deck  
 A compact vertical music dock for Foundry VTT 13+
 
