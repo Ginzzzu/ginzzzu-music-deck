@@ -2,7 +2,7 @@
   "id": "ginzzzu-music-deck",
   "title": "Ginzzzu's Music Deck",
   "description": "Vertical playlist dock for Foundry VTT with favorites, aliases and quick access to tracks.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "compatibility": {
     "minimum": "13",
     "verified": "13"

@@ -1076,6 +1076,12 @@ Hooks.once("init", () => {
 Hooks.once("ready", () => {
   console.log(`${MODULE_ID} | ready`);
 
+  // Только для ГМа — игрокам дека не нужна
+  if (!game.user?.isGM) {
+    console.log(`${MODULE_ID} | skipping init for non-GM user`);
+    return;
+  }
+
   try {
     GinzzzuMusicDeck.instance = new GinzzzuMusicDeck();
     GinzzzuMusicDeck.instance.render();
